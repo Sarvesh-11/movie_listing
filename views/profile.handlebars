@@ -1,0 +1,96 @@
+<div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="full card horizontal">
+                    <div class="little card-image waves-effect waves-block waves-light">
+                        {{!-- <img class="activator" src="/{{ofRole}}/{{user.image}}"> --}}
+                    </div>
+                    <div class="card-stacked">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            <h5>{{user.username}}</h5>
+                            <br>
+                            {{user.name}}
+                        </span>
+                    </div>
+
+                    <div class="card-action">
+                        <p>
+                            <button class="btn waves-effect waves-light">
+                                User
+                            </button>
+                        </p>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<table>
+<thead>
+    <tr>
+        <th>Movie Name</th>
+        <th>Rating</th>
+        <th>Cast</th>
+        <th>Genre</th>
+        <th>Release date</th>
+        <th>Action</th>
+    </tr>
+</thead>
+
+<tbody>
+    <tr>
+        <form action="/profile" method="post">
+            <td><input required placeholder="Name" name="name" id="name" type="text" class="validate"></td>
+            <td><input required placeholder="Rating" name="rating" id="rating" type="number" class="validate"></td>
+            <td><input required placeholder="Cast" name="cast" id="cast" type="text" class="validate"></td>
+            <td><input required placeholder="Genre" name="genre" id="genre" type="text" class="validate"></td>
+            <td><input required placeholder="Release date" name="release_date" id="release_date" type="text" class="validate datepicker"></td>
+            <td>
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Add
+                    <i class="material-icons right">add</i>
+                </button>
+            </td>
+        </form>
+    </tr>
+    
+    {{#each movie}}
+        <tr>
+        <form action="/movie/edit/{{this.id}}" method="post">
+            <td><input required value='{{this.name}}' placeholder="Name" name="name" id="name" type="text" class="validate"></td>
+            <td><input required value='{{this.rating}}' placeholder="Rating" name="rating" id="rating" type="number" class="validate"></td>
+            <td><input required value='{{this.cast}}' placeholder="Cast" name="cast" id="cast" type="text" class="validate"></td>
+            <td><input required value='{{this.genre}}' placeholder="Genre" name="genre" id="genre" type="text" class="validate"></td>
+            <td><input required value='{{this.release_date}}' placeholder="Release date" name="release_date" id="release_date" type="text" class="validate datepicker"></td>
+            <td>
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Edit
+                    <i class="material-icons right">edit</i>
+                </button>
+        </form>
+        <form action="/movie/delete/{{this.id}}" method="post">
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Delete
+                    <i class="material-icons right">delete</i>
+                </button>
+            </td>
+        </form>
+    </tr>
+    {{/each}}
+</tbody>
+</table>
+
+{{#if msg includeZero=true}}
+    <script>
+        M.toast({html: '{{msg}}'})
+    </script>
+{{/if}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.datepicker');
+        var instances = M.Datepicker.init(elems);
+    });  
+</script>

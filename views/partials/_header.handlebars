@@ -1,0 +1,21 @@
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+        <a href="/" class="brand-logo">Movies</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                {{#if user includeZero=true}}<li><a href="/profile">Profile</a></li>
+                {{else}}<li><a href="/register">Register</a></li>{{/if}}
+                
+                {{#if user includeZero=true}}<li><a href="/logout">Logout</a></li>
+                {{else}}<li><a href="/login">Login</a></li>{{/if}}
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <a href="/login">Login</a>
+        </li>
+    </ul>
+</div>
